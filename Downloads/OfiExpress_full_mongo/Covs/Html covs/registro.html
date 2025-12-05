@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crear Cuenta | OfiExpress</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      body {
+        background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 50%, var(--primary) 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+        position: relative;
+        overflow-x: hidden;
+      }
+
+      body::before {
+        content: '';
+        position: fixed;
+        top: -50%;
+        left: -10%;
+        width: 500px;
+        height: 500px;
+        background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: float 6s ease-in-out infinite;
+        z-index: 0;
+      }
+
+      body::after {
+        content: '';
+        position: fixed;
+        bottom: -30%;
+        right: -5%;
+        width: 400px;
+        height: 400px;
+        background: radial-gradient(circle, rgba(29, 78, 216, 0.1) 0%, transparent 70%);
+        border-radius: 50%;
+        animation: float 7s ease-in-out infinite reverse;
+        z-index: 0;
+      }
+
+      .auth-container {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        padding: 3rem 2rem;
+        max-width: 550px;
+        width: 100%;
+        position: relative;
+        z-index: 1;
+        animation: slideInUp 0.6s ease-out;
+        border-top: 4px solid var(--primary);
+      }
+
+      .auth-header {
+        text-align: center;
+        margin-bottom: 2rem;
+        animation: fadeInDown 0.6s ease-out;
+      }
+
+      .auth-header h1 {
+        color: var(--primary-dark);
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        font-weight: 800;
+      }
+
+      .auth-header p {
+        color: var(--gray-500);
+        font-size: 0.95rem;
+      }
+
+      .form-group {
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 0.6s ease-out;
+      }
+
+      .form-label {
+        font-weight: 600;
+        color: var(--gray-700);
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+      }
+
+      .form-control {
+        border: 2px solid var(--gray-300);
+        border-radius: 10px;
+        padding: 12px 15px;
+        font-size: 1rem;
+        transition: all 0.3s ease;
+        background: white;
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 20px rgba(29, 78, 216, 0.3), 0 0 0 3px rgba(29, 78, 216, 0.1);
+        transform: scale(1.02);
+      }
+
+      .form-control::placeholder {
+        color: var(--gray-400);
+      }
+
+      .form-control:hover {
+        border-color: var(--secondary);
+        box-shadow: 0 2px 10px rgba(255, 107, 53, 0.1);
+      }
+
+      .form-check {
+        margin-bottom: 1.5rem;
+        animation: fadeInUp 0.6s ease-out 0.1s both;
+      }
+
+      .form-check-label {
+        color: var(--gray-600);
+        font-weight: 500;
+        cursor: pointer;
+        transition: color 0.3s ease;
+      }
+
+      .form-check-input {
+        border-color: var(--gray-300);
+        border-width: 2px;
+        transition: all 0.3s ease;
+      }
+
+      .form-check-input:checked {
+        background-color: var(--primary);
+        border-color: var(--primary);
+        box-shadow: 0 0 10px rgba(29, 78, 216, 0.3);
+      }
+
+      .btn-registro {
+        width: 100%;
+        padding: 12px;
+        border-radius: 50px;
+        background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+        color: white;
+        border: none;
+        font-weight: 700;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 10px 25px rgba(255, 107, 53, 0.2);
+        animation: fadeInUp 0.6s ease-out 0.2s both;
+      }
+
+      .btn-registro:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 40px rgba(255, 107, 53, 0.4);
+        animation: pulse 0.6s ease-out;
+      }
+
+      .btn-registro:active {
+        transform: translateY(-1px);
+      }
+
+      .form-footer {
+        margin-top: 2rem;
+        text-align: center;
+        animation: fadeInUp 0.6s ease-out 0.3s both;
+      }
+
+      .form-footer p {
+        margin: 0;
+        color: var(--gray-600);
+        font-size: 0.95rem;
+      }
+
+      .auth-link {
+        color: var(--primary);
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .auth-link:hover {
+        color: var(--secondary);
+        text-decoration: underline;
+        text-shadow: 0 0 5px rgba(255, 107, 53, 0.2);
+      }
+
+      .alert {
+        animation: slideInLeft 0.5s ease-out;
+        border-radius: 10px;
+        border-left: 4px solid;
+      }
+
+      @media (max-width: 480px) {
+        .auth-container {
+          padding: 2rem 1.5rem;
+        }
+
+        .auth-header h1 {
+          font-size: 1.5rem;
+        }
+
+        .row {
+          flex-direction: column;
+        }
+
+        .col-md-6 {
+          width: 100%;
+        }
+      }
+    </style>
+</head>
+
+<body data-page="registro">
+    <div class="auth-container">
+        <div class="auth-header">
+            <h1>📝 Crear Cuenta</h1>
+            <p>Únete a la comunidad OfiExpress hoy</p>
+        </div>
+
+        <div id="alert-container"></div>
+
+        <form id="registroForm">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">👤 Nombre</label>
+                        <input type="text" id="nombre" class="form-control" placeholder="Tu nombre" required />
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label class="form-label">👥 Apellido</label>
+                        <input type="text" id="apellido" class="form-control" placeholder="Tu apellido" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">📧 Correo Electrónico</label>
+                <input type="email" id="email" class="form-control" placeholder="tu@email.com" required />
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">🔑 Contraseña</label>
+                <input type="password" id="password" class="form-control" placeholder="••••••••" required />
+                <small style="color: var(--gray-500);">Mínimo 8 caracteres recomendado</small>
+            </div>
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="terminos" required />
+                <label class="form-check-label" for="terminos">
+                    ✓ Acepto los <a href="#" class="auth-link">términos y condiciones</a>
+                </label>
+            </div>
+
+            <button class="btn-registro" type="submit">🚀 Crear Mi Cuenta</button>
+        </form>
+
+        <div class="form-footer">
+            <p>¿Ya tienes cuenta? 
+                <a href="login.html" class="auth-link">Inicia sesión aquí</a>
+            </p>
+        </div>
+
+        <div style="text-align: center; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--gray-200);">
+            <a href="index.html" style="color: var(--gray-500); text-decoration: none; font-size: 0.9rem; transition: all 0.3s ease;" onmouseover="this.style.color = 'var(--primary)'; this.style.textDecoration = 'underline';" onmouseout="this.style.color = 'var(--gray-500)'; this.style.textDecoration = 'none';">
+                ← Volver al inicio
+            </a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.getElementById('registroForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const nombre = document.getElementById('nombre').value;
+            const apellido = document.getElementById('apellido').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (password.length < 6) {
+                const alertDiv = document.getElementById('alert-container');
+                alertDiv.innerHTML = `
+                    <div class="alert alert-warning">
+                        <strong>⚠️ Advertencia:</strong> La contraseña debe tener al menos 6 caracteres
+                    </div>
+                `;
+                return;
+            }
+            
+            try {
+                const response = await apiPost('/api/auth/register', {
+                    nombre,
+                    apellido,
+                    email,
+                    password
+                });
+                
+                const alertDiv = document.getElementById('alert-container');
+                alertDiv.innerHTML = `
+                    <div class="alert alert-success">
+                        <strong>✨ ¡Éxito!</strong> Cuenta creada. Redirigiendo al login...
+                    </div>
+                `;
+                
+                setTimeout(() => {
+                    window.location.href = 'login.html';
+                }, 2000);
+            } catch (error) {
+                const alertDiv = document.getElementById('alert-container');
+                alertDiv.innerHTML = `
+                    <div class="alert alert-danger">
+                        <strong>❌ Error:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        });
+    </script>
+</body>
+</html>

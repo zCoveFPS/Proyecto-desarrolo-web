@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anulación de Pedido - OfiExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">OfiExpress</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="index.html" class="btn btn-secondary btn-sm">Volver</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="mb-4">Anular Pedido</h2>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-4">
+                            <div>
+                                <h5 class="mb-1">Pedido #ORD-1234</h5>
+                                <p class="text-muted mb-0">Realizado hace 1 hora</p>
+                            </div>
+                            <span class="badge badge-warning">Pendiente</span>
+                        </div>
+
+                        <div class="alert alert-info mb-4">
+                            <strong>Ventana de anulación disponible</strong>
+                            <p class="mb-0">Puedes anular este pedido dentro de las primeras 2 horas después de realizado, siempre que no haya sido enviado.</p>
+                            <p class="mb-0 mt-2"><strong>Tiempo restante: 1 hora</strong></p>
+                        </div>
+
+                        <div class="mb-4">
+                            <h6 class="mb-3">Detalles del Pedido</h6>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Producto</th>
+                                            <th>Cantidad</th>
+                                            <th>Precio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Cuaderno Universitario</td>
+                                            <td>2</td>
+                                            <td>$5.980</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Resma de Papel A4</td>
+                                            <td>1</td>
+                                            <td>$4.990</td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td colspan="2" class="text-end"><strong>Total:</strong></td>
+                                            <td><strong>$23.950</strong></td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="cancelReason" class="form-label">Motivo de anulación (opcional)</label>
+                            <textarea class="form-control" id="cancelReason" rows="3" placeholder="Cuéntanos por qué deseas anular este pedido"></textarea>
+                        </div>
+
+                        <div class="alert alert-danger">
+                            <strong>Importante:</strong> Al anular el pedido, se procesará el reembolso completo en un plazo de 5-7 días hábiles.
+                        </div>
+
+                        <div class="d-flex gap-3">
+                            <button class="btn btn-danger flex-grow-1" onclick="cancelOrder()">Anular Pedido</button>
+                            <a href="seguimiento.html" class="btn btn-secondary">Mantener Pedido</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <div class="d-flex justify-content-between align-items-start mb-3">
+                            <div>
+                                <h5 class="mb-1">Pedido #ORD-1220</h5>
+                                <p class="text-muted mb-0">Realizado hace 3 horas</p>
+                            </div>
+                            <span class="badge badge-info">En preparación</span>
+                        </div>
+
+                        <div class="alert alert-danger">
+                            <strong>No es posible anular: tiempo excedido</strong>
+                            <p class="mb-0">Este pedido fue realizado hace más de 2 horas y ya está en preparación. No es posible anularlo.</p>
+                        </div>
+
+                        <button class="btn btn-secondary" disabled>Anulación no disponible</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function cancelOrder() {
+            if (confirm('¿Estás seguro de que deseas anular este pedido? Esta acción no se puede deshacer.')) {
+                alert('Pedido anulado exitosamente. El reembolso será procesado en 5-7 días hábiles.');
+                window.location.href = 'seguimiento.html';
+            }
+        }
+    </script>
+</body>
+</html>

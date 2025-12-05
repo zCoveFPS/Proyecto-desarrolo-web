@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centro de Ayuda - OfiExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">OfiExpress</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="index.html" class="btn btn-secondary btn-sm">Volver</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="text-center mb-5">
+            <h2 class="mb-3">Centro de Ayuda</h2>
+            <p class="text-muted">¿En qué podemos ayudarte?</p>
+        </div>
+
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-body">
+                        <input type="text" class="form-control form-control-lg" placeholder="Buscar en preguntas frecuentes..." id="searchFAQ">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row mb-5">
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div style="width: 60px; height: 60px; background: var(--accent-blue); border-radius: 12px; margin: 0 auto 1rem;"></div>
+                        <h5>Pedidos y Envíos</h5>
+                        <p class="text-muted">Información sobre el estado de tus pedidos</p>
+                        <button class="btn btn-primary" onclick="showCategory('pedidos')">Ver Preguntas</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div style="width: 60px; height: 60px; background: var(--accent-purple); border-radius: 12px; margin: 0 auto 1rem;"></div>
+                        <h5>Pagos y Facturación</h5>
+                        <p class="text-muted">Métodos de pago y facturación</p>
+                        <button class="btn btn-primary" onclick="showCategory('pagos')">Ver Preguntas</button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body text-center">
+                        <div style="width: 60px; height: 60px; background: var(--accent-green); border-radius: 12px; margin: 0 auto 1rem;"></div>
+                        <h5>Devoluciones</h5>
+                        <p class="text-muted">Política de devoluciones y cambios</p>
+                        <button class="btn btn-primary" onclick="showCategory('devoluciones')">Ver Preguntas</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <h4 class="mb-4">Preguntas Frecuentes</h4>
+
+                <div class="accordion" id="faqAccordion">
+                    <div class="card mb-3">
+                        <div class="card-header" style="background: var(--bg-secondary); border: none;">
+                            <button class="btn w-100 text-start d-flex justify-content-between align-items-center" style="color: var(--text-primary);" data-bs-toggle="collapse" data-bs-target="#faq1">
+                                <span>¿Cuánto tiempo tarda el envío?</span>
+                                <span>+</span>
+                            </button>
+                        </div>
+                        <div id="faq1" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="card-body">
+                                <p class="text-muted mb-0">Los envíos dentro de Santiago se realizan en 24-48 horas hábiles. Para regiones, el tiempo de entrega es de 3-5 días hábiles dependiendo de la ubicación.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header" style="background: var(--bg-secondary); border: none;">
+                            <button class="btn w-100 text-start d-flex justify-content-between align-items-center" style="color: var(--text-primary);" data-bs-toggle="collapse" data-bs-target="#faq2">
+                                <span>¿Qué métodos de pago aceptan?</span>
+                                <span>+</span>
+                            </button>
+                        </div>
+                        <div id="faq2" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="card-body">
+                                <p class="text-muted mb-0">Aceptamos tarjetas de crédito y débito (Visa, Mastercard, American Express), transferencia bancaria y pago en efectivo contra entrega.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header" style="background: var(--bg-secondary); border: none;">
+                            <button class="btn w-100 text-start d-flex justify-content-between align-items-center" style="color: var(--text-primary);" data-bs-toggle="collapse" data-bs-target="#faq3">
+                                <span>¿Puedo devolver un producto?</span>
+                                <span>+</span>
+                            </button>
+                        </div>
+                        <div id="faq3" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="card-body">
+                                <p class="text-muted mb-0">Sí, aceptamos devoluciones dentro de los 30 días posteriores a la compra. El producto debe estar en su empaque original y sin uso. Los gastos de envío de devolución corren por cuenta del cliente, excepto en caso de productos defectuosos.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header" style="background: var(--bg-secondary); border: none;">
+                            <button class="btn w-100 text-start d-flex justify-content-between align-items-center" style="color: var(--text-primary);" data-bs-toggle="collapse" data-bs-target="#faq4">
+                                <span>¿Cómo puedo rastrear mi pedido?</span>
+                                <span>+</span>
+                            </button>
+                        </div>
+                        <div id="faq4" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="card-body">
+                                <p class="text-muted mb-0">Una vez que tu pedido sea enviado, recibirás un email con el número de seguimiento. También puedes ver el estado de tu pedido en la sección "Mis Pedidos" de tu cuenta.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header" style="background: var(--bg-secondary); border: none;">
+                            <button class="btn w-100 text-start d-flex justify-content-between align-items-center" style="color: var(--text-primary);" data-bs-toggle="collapse" data-bs-target="#faq5">
+                                <span>¿Tienen tienda física?</span>
+                                <span>+</span>
+                            </button>
+                        </div>
+                        <div id="faq5" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="card-body">
+                                <p class="text-muted mb-0">Sí, contamos con una tienda física en Santiago Centro. Puedes visitarnos de lunes a viernes de 9:00 a 18:00 hrs y sábados de 10:00 a 14:00 hrs.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card mb-3">
+                        <div class="card-header" style="background: var(--bg-secondary); border: none;">
+                            <button class="btn w-100 text-start d-flex justify-content-between align-items-center" style="color: var(--text-primary);" data-bs-toggle="collapse" data-bs-target="#faq6">
+                                <span>¿Puedo anular mi pedido?</span>
+                                <span>+</span>
+                            </button>
+                        </div>
+                        <div id="faq6" class="collapse" data-bs-parent="#faqAccordion">
+                            <div class="card-body">
+                                <p class="text-muted mb-0">Puedes anular tu pedido dentro de las primeras 2 horas después de realizado, siempre que no haya sido enviado. El reembolso se procesará en 5-7 días hábiles.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mt-5">
+                    <div class="card-body">
+                        <h5 class="mb-4">¿No encontraste lo que buscabas?</h5>
+                        <p class="text-muted mb-4">Contáctanos y te ayudaremos a resolver tu consulta</p>
+
+                        <form id="contactForm">
+                            <div class="row g-3">
+                                <div class="col-md-6">
+                                    <label for="contactName" class="form-label">Nombre</label>
+                                    <input type="text" class="form-control" id="contactName" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="contactEmail" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="contactEmail" required>
+                                </div>
+                                <div class="col-12">
+                                    <label for="contactSubject" class="form-label">Asunto</label>
+                                    <select class="form-select" id="contactSubject" required>
+                                        <option value="">Selecciona un tema...</option>
+                                        <option>Consulta sobre pedido</option>
+                                        <option>Problema con pago</option>
+                                        <option>Devolución o cambio</option>
+                                        <option>Consulta sobre producto</option>
+                                        <option>Otro</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label for="contactMessage" class="form-label">Mensaje</label>
+                                    <textarea class="form-control" id="contactMessage" rows="4" required></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <button type="submit" class="btn btn-primary">Enviar Consulta</button>
+                                </div>
+                            </div>
+                        </form>
+
+                        <div id="contactSuccess" class="alert alert-success mt-4" style="display: none;">
+                            <strong>¡Consulta enviada!</strong>
+                            <p class="mb-0">Hemos recibido tu mensaje. Te responderemos en un plazo máximo de 24 horas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function showCategory(category) {
+            alert(`Mostrando preguntas de la categoría: ${category}`);
+        }
+
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('contactSuccess').style.display = 'block';
+            this.reset();
+            window.scrollTo(0, document.body.scrollHeight);
+        });
+    </script>
+</body>
+</html>

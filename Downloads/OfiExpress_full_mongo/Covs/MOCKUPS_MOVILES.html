@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OfiExpress - Mockups Móviles</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 2em;
+        }
+
+        .mockups-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .mockup-frame {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            position: relative;
+            aspect-ratio: 9/16;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .mockup-frame.inactive {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .notch {
+            height: 25px;
+            background: #000;
+            border-radius: 0 0 20px 20px;
+        }
+
+        .phone-screen {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .phone-screen::-webkit-scrollbar {
+            width: 4px;
+        }
+
+        .phone-screen::-webkit-scrollbar-thumb {
+            background: #ddd;
+            border-radius: 2px;
+        }
+
+        /* Header Navigation */
+        .nav-header {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            color: white;
+            padding: 15px;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .nav-header button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* Home Screen */
+        .hero {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background: white;
+            color: #1d4ed8;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        .section-title {
+            padding: 15px;
+            font-weight: 600;
+            color: #333;
+            font-size: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 12px;
+        }
+
+        .product-image {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #666;
+        }
+
+        .product-info {
+            flex: 1;
+        }
+
+        .product-name {
+            font-weight: 600;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .product-price {
+            color: #1d4ed8;
+            font-weight: 600;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .add-btn {
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            padding: 5px 12px;
+            border-radius: 5px;
+            font-size: 11px;
+            cursor: pointer;
+        }
+
+        /* Cart Screen */
+        .cart-item {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .cart-product-image {
+            width: 50px;
+            height: 50px;
+            background: #e5e7eb;
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+
+        .cart-product-info {
+            flex: 1;
+        }
+
+        .cart-product-name {
+            font-weight: 600;
+            font-size: 13px;
+            color: #333;
+            margin-bottom: 3px;
+        }
+
+        .quantity-control {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .qty-btn {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #ddd;
+            background: white;
+            cursor: pointer;
+            border-radius: 3px;
+            font-size: 11px;
+        }
+
+        .delete-btn {
+            background: #dc2626;
+            color: white;
+            border: none;
+            padding: 3px 8px;
+            border-radius: 3px;
+            font-size: 11px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .cart-summary {
+            background: #f9fafb;
+            padding: 15px;
+            border-top: 2px solid #e5e7eb;
+            margin-top: auto;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .summary-row.total {
+            font-weight: 600;
+            font-size: 15px;
+            color: #1d4ed8;
+            border-top: 1px solid #e5e7eb;
+            padding-top: 10px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: #16a34a;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            margin-top: 10px;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        /* Profile Screen */
+        .profile-header {
+            background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 100%);
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+        }
+
+        .profile-avatar {
+            width: 60px;
+            height: 60px;
+            background: rgba(255,255,255,0.3);
+            border-radius: 50%;
+            margin: 0 auto 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+        }
+
+        .profile-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .profile-email {
+            font-size: 12px;
+            opacity: 0.9;
+        }
+
+        .form-group {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .form-label {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+            display: block;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 13px;
+            font-family: inherit;
+        }
+
+        .save-btn {
+            margin: 15px;
+            width: calc(100% - 30px);
+            background: #1d4ed8;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 13px;
+        }
+
+        /* Checkout Screen */
+        .checkout-section {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .checkout-section-title {
+            font-weight: 600;
+            color: #333;
+            font-size: 13px;
+            margin-bottom: 10px;
+        }
+
+        .address-box {
+            background: #f9fafb;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 12px;
+            line-height: 1.6;
+            color: #666;
+        }
+
+        .payment-option {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 10px 0;
+            font-size: 13px;
+        }
+
+        .payment-option input[type="radio"] {
+            cursor: pointer;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #fef08a;
+            color: #854d0e;
+        }
+
+        .status-processing {
+            background: #dbeafe;
+            color: #0c4a6e;
+        }
+
+        .status-delivered {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px 20px;
+            color: #999;
+        }
+
+        .empty-state-icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+        }
+
+        .empty-state-text {
+            font-size: 13px;
+        }
+
+        .home-icon {
+            font-size: 16px;
+            margin-right: 5px;
+        }
+
+        /* Indicadores de estado */
+        .state-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #1d4ed8;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        h3 {
+            text-align: center;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .mockups-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>📱 OfiExpress - Mockups GUI Móvil</h1>
+
+    <div class="mockups-grid">
+        <!-- MOCKUP 1: HOME SCREEN -->
+        <div>
+            <h3>1. Pantalla de Inicio</h3>
+            <div class="mockup-frame">
+                <div class="notch"></div>
+                <div class="nav-header">
+                    <span class="home-icon">🏠</span>
+                    <span>OfiExpress</span>
+                    <button>👤</button>
+                </div>
+
+                <div class="phone-screen">
+                    <div class="hero">
+                        <h2>¡Hola, Juan!</h2>
+                        <p>Bienvenido a tu tienda de insumos</p>
+                        <button class="cta-button">Explorar Catálogo</button>
+                    </div>
+
+                    <div class="section-title">📌 Recomendados</div>
+                    <div class="product-item">
+                        <div class="product-image">📝</div>
+                        <div class="product-info">
+                            <div class="product-name">Block de Dibujo</div>
+                            <div class="product-price">$2.490 CLP</div>
+                        </div>
+                        <button class="add-btn">Agregar</button>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">✏️</div>
+                        <div class="product-info">
+                            <div class="product-name">Bolígrafo BIC</div>
+                            <div class="product-price">$890 CLP</div>
+                        </div>
+                        <button class="add-btn">Agregar</button>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">📎</div>
+                        <div class="product-info">
+                            <div class="product-name">Clips de Metal</div>
+                            <div class="product-price">$450 CLP</div>
+                        </div>
+                        <button class="add-btn">Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOCKUP 2: CATÁLOGO/PRODUCTOS -->
+        <div>
+            <h3>2. Catálogo de Productos</h3>
+            <div class="mockup-frame">
+                <div class="notch"></div>
+                <div class="nav-header">
+                    <span>◀ Atrás</span>
+                    <span>Catálogo</span>
+                    <span>🛒 (2)</span>
+                </div>
+
+                <div class="phone-screen">
+                    <div style="padding: 10px; display: flex; gap: 8px; overflow-x: auto;">
+                        <button style="padding: 8px 12px; border-radius: 20px; border: 1px solid #1d4ed8; color: #1d4ed8; background: #f0f8ff; cursor: pointer; font-size: 11px; white-space: nowrap;">Todos</button>
+                        <button style="padding: 8px 12px; border-radius: 20px; border: 1px solid #ddd; color: #666; background: white; cursor: pointer; font-size: 11px; white-space: nowrap;">Papel</button>
+                        <button style="padding: 8px 12px; border-radius: 20px; border: 1px solid #ddd; color: #666; background: white; cursor: pointer; font-size: 11px; white-space: nowrap;">Escritura</button>
+                        <button style="padding: 8px 12px; border-radius: 20px; border: 1px solid #ddd; color: #666; background: white; cursor: pointer; font-size: 11px; white-space: nowrap;">Archivos</button>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">📝</div>
+                        <div class="product-info">
+                            <div class="product-name">Block de Dibujo A4</div>
+                            <div class="product-price">$2.490 CLP</div>
+                        </div>
+                        <button class="add-btn">+ Agregar</button>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">✏️</div>
+                        <div class="product-info">
+                            <div class="product-name">Bolígrafo BIC Azul</div>
+                            <div class="product-price">$890 CLP</div>
+                        </div>
+                        <button class="add-btn">+ Agregar</button>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">📎</div>
+                        <div class="product-info">
+                            <div class="product-name">Clips de Metal x50</div>
+                            <div class="product-price">$450 CLP</div>
+                        </div>
+                        <button class="add-btn">+ Agregar</button>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">📌</div>
+                        <div class="product-info">
+                            <div class="product-name">Chinches de Color</div>
+                            <div class="product-price">$590 CLP</div>
+                        </div>
+                        <button class="add-btn">+ Agregar</button>
+                    </div>
+
+                    <div class="product-item">
+                        <div class="product-image">📋</div>
+                        <div class="product-info">
+                            <div class="product-name">Carpeta Colgante</div>
+                            <div class="product-price">$1.290 CLP</div>
+                        </div>
+                        <button class="add-btn">+ Agregar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOCKUP 3: CARRITO -->
+        <div>
+            <h3>3. Carrito de Compras</h3>
+            <div class="mockup-frame">
+                <div class="notch"></div>
+                <div class="nav-header">
+                    <span>◀ Atrás</span>
+                    <span>Mi Carrito</span>
+                    <span></span>
+                </div>
+
+                <div class="phone-screen">
+                    <div class="section-title">Artículos en tu carrito</div>
+
+                    <div class="cart-item">
+                        <div class="cart-product-image"></div>
+                        <div class="cart-product-info">
+                            <div class="cart-product-name">Block de Dibujo</div>
+                            <div class="product-price">$2.490 c/u</div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 15px 10px 77px; font-size: 12px;">
+                        <div class="quantity-control">
+                            <button class="qty-btn">−</button>
+                            <span>2</span>
+                            <button class="qty-btn">+</button>
+                            <button class="delete-btn">Eliminar</button>
+                        </div>
+                    </div>
+
+                    <div class="cart-item">
+                        <div class="cart-product-image"></div>
+                        <div class="cart-product-info">
+                            <div class="cart-product-name">Bolígrafo BIC</div>
+                            <div class="product-price">$890 c/u</div>
+                        </div>
+                    </div>
+                    <div style="padding: 0 15px 10px 77px; font-size: 12px;">
+                        <div class="quantity-control">
+                            <button class="qty-btn">−</button>
+                            <span>3</span>
+                            <button class="qty-btn">+</button>
+                            <button class="delete-btn">Eliminar</button>
+                        </div>
+                    </div>
+
+                    <div class="cart-summary">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span>$7.350</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Envío:</span>
+                            <span>$2.000</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span>$9.350</span>
+                        </div>
+                        <button class="checkout-btn">Proceder al Pago</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOCKUP 4: CHECKOUT -->
+        <div>
+            <h3>4. Checkout / Pago</h3>
+            <div class="mockup-frame">
+                <div class="notch"></div>
+                <div class="nav-header">
+                    <span>◀ Atrás</span>
+                    <span>Confirmar Pedido</span>
+                    <span></span>
+                </div>
+
+                <div class="phone-screen">
+                    <div class="checkout-section">
+                        <div class="checkout-section-title">📍 Dirección de Envío</div>
+                        <div class="address-box">
+                            Calle Principal 123<br>
+                            Santiago, Chile 8320000
+                        </div>
+                        <button style="width: 100%; margin-top: 10px; padding: 8px; background: #f0f8ff; border: 1px solid #1d4ed8; color: #1d4ed8; border-radius: 5px; cursor: pointer; font-size: 12px;">Cambiar Dirección</button>
+                    </div>
+
+                    <div class="checkout-section">
+                        <div class="checkout-section-title">💳 Método de Pago</div>
+                        <label class="payment-option">
+                            <input type="radio" name="payment" checked>
+                            <span>Tarjeta de Crédito</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment">
+                            <span>Transferencia Bancaria</span>
+                        </label>
+                        <label class="payment-option">
+                            <input type="radio" name="payment">
+                            <span>Efectivo contra entrega</span>
+                        </label>
+                    </div>
+
+                    <div class="checkout-section">
+                        <div class="checkout-section-title">📦 Resumen</div>
+                        <div class="summary-row">
+                            <span>2x Block Dibujo:</span>
+                            <span>$4.980</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>3x Bolígrafo:</span>
+                            <span>$2.670</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Envío:</span>
+                            <span>$2.000</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total a pagar:</span>
+                            <span>$9.650</span>
+                        </div>
+                    </div>
+
+                    <button class="checkout-btn" style="margin: 15px; width: calc(100% - 30px);">Confirmar Pago</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOCKUP 5: PERFIL -->
+        <div>
+            <h3>5. Perfil de Usuario</h3>
+            <div class="mockup-frame">
+                <div class="notch"></div>
+                <div class="nav-header">
+                    <span>◀ Atrás</span>
+                    <span>Mi Perfil</span>
+                    <span>⚙️</span>
+                </div>
+
+                <div class="phone-screen">
+                    <div class="profile-header">
+                        <div class="profile-avatar">👤</div>
+                        <div class="profile-name">Juan Pérez</div>
+                        <div class="profile-email">juan@example.com</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Nombre</label>
+                        <input type="text" class="form-input" value="Juan Pérez">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input type="email" class="form-input" value="juan@example.com" disabled style="opacity: 0.6;">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Teléfono</label>
+                        <input type="tel" class="form-input" placeholder="+56 9 1234 5678">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Dirección</label>
+                        <input type="text" class="form-input" placeholder="Calle, número, ciudad">
+                    </div>
+
+                    <button class="save-btn">Guardar Cambios</button>
+                    <button style="margin: 0 15px 15px; width: calc(100% - 30px); background: #dc2626; color: white; border: none; padding: 12px; border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 13px;">Cerrar Sesión</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MOCKUP 6: MIS ÓRDENES -->
+        <div>
+            <h3>6. Mis Órdenes / Seguimiento</h3>
+            <div class="mockup-frame">
+                <div class="notch"></div>
+                <div class="nav-header">
+                    <span>◀ Atrás</span>
+                    <span>Mis Órdenes</span>
+                    <span></span>
+                </div>
+
+                <div class="phone-screen">
+                    <div style="padding: 15px;">
+                        <div style="background: #f9fafb; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-weight: 600; font-size: 13px;">Orden #ORD-001</span>
+                                <span class="status-badge status-delivered">✓ Entregado</span>
+                            </div>
+                            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Fecha: 25 Nov 2025</div>
+                            <div style="font-size: 12px; color: #666;">Total: $9.650 CLP</div>
+                        </div>
+
+                        <div style="background: #f9fafb; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-weight: 600; font-size: 13px;">Orden #ORD-002</span>
+                                <span class="status-badge status-processing">📍 En Ruta</span>
+                            </div>
+                            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Fecha: 30 Nov 2025</div>
+                            <div style="font-size: 12px; color: #666;">Total: $5.490 CLP</div>
+                        </div>
+
+                        <div style="background: #f9fafb; padding: 15px; border-radius: 8px; margin-bottom: 15px;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 8px;">
+                                <span style="font-weight: 600; font-size: 13px;">Orden #ORD-003</span>
+                                <span class="status-badge status-pending">⏳ Pendiente</span>
+                            </div>
+                            <div style="font-size: 12px; color: #666; margin-bottom: 5px;">Fecha: 05 Dic 2025</div>
+                            <div style="font-size: 12px; color: #666;">Total: $12.340 CLP</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- LEYENDA DE ESTADOS -->
+    <div style="background: white; padding: 30px; border-radius: 10px; margin-bottom: 40px;">
+        <h2 style="margin-bottom: 15px; color: #333;">📊 Estados del Sistema</h2>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">
+            <div style="padding: 15px; background: #fef08a; border-radius: 8px;">
+                <div style="font-weight: 600; color: #854d0e; margin-bottom: 5px;">⏳ Pendiente</div>
+                <div style="font-size: 12px; color: #854d0e;">Orden creada, esperando confirmación de pago o procesamiento</div>
+            </div>
+
+            <div style="padding: 15px; background: #dbeafe; border-radius: 8px;">
+                <div style="font-weight: 600; color: #0c4a6e; margin-bottom: 5px;">📍 En Ruta</div>
+                <div style="font-size: 12px; color: #0c4a6e;">Pedido asignado a courier, en camino al cliente</div>
+            </div>
+
+            <div style="padding: 15px; background: #dcfce7; border-radius: 8px;">
+                <div style="font-weight: 600; color: #15803d; margin-bottom: 5px;">✓ Entregado</div>
+                <div style="font-size: 12px; color: #15803d;">Pedido recibido por el cliente (o completado)</div>
+            </div>
+
+            <div style="padding: 15px; background: #fee2e2; border-radius: 8px;">
+                <div style="font-weight: 600; color: #991b1b; margin-bottom: 5px;">❌ Cancelado</div>
+                <div style="font-size: 12px; color: #991b1b;">Orden cancelada por cliente o error en pago</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLUJOS DE NAVEGACIÓN -->
+    <div style="background: white; padding: 30px; border-radius: 10px;">
+        <h2 style="margin-bottom: 15px; color: #333;">🔄 Flujos de Navegación Principales</h2>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px;">
+            <div>
+                <h3 style="margin-top: 0; color: #1d4ed8;">Flujo: Nuevo Usuario</h3>
+                <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; font-size: 13px; line-height: 2;">
+                    1️⃣ Pantalla Inicio (no logeado) → Login/Registro<br>
+                    2️⃣ Llenar formulario → "Registrarse"<br>
+                    3️⃣ Redirige a Inicio (logeado)<br>
+                    4️⃣ Opción: Editar Perfil o Explorar Catálogo
+                </div>
+            </div>
+
+            <div>
+                <h3 style="margin-top: 0; color: #1d4ed8;">Flujo: Compra</h3>
+                <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; font-size: 13px; line-height: 2;">
+                    1️⃣ Catálogo → Ver productos<br>
+                    2️⃣ Agregar al Carrito<br>
+                    3️⃣ Mi Carrito → Ajustar cantidades<br>
+                    4️⃣ "Proceder al Pago"<br>
+                    5️⃣ Checkout → Dirección + Método → Confirmar
+                </div>
+            </div>
+
+            <div>
+                <h3 style="margin-top: 0; color: #1d4ed8;">Flujo: Seguimiento</h3>
+                <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; font-size: 13px; line-height: 2;">
+                    1️⃣ Perfil → "Mis Órdenes"<br>
+                    2️⃣ Ver lista de órdenes con estado<br>
+                    3️⃣ Click en orden → Ver detalles + tracking<br>
+                    4️⃣ Notificación de cambio de estado por email
+                </div>
+            </div>
+
+            <div>
+                <h3 style="margin-top: 0; color: #1d4ed8;">Flujo: Error (Vacío)</h3>
+                <div style="background: #f0f8ff; padding: 15px; border-radius: 8px; font-size: 13px; line-height: 2;">
+                    • Carrito vacío → Botón "Explorar"<br>
+                    • Sin órdenes → "Tu carrito está vacío"<br>
+                    • Stock agotado → Botón deshabilitado
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+</html>

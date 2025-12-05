@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Devoluciones - OfiExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="index.html">OfiExpress</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <span class="nav-link">Admin Panel</span>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html" class="btn btn-secondary btn-sm">Volver</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid px-4 py-4">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h2>Gestión de Devoluciones</h2>
+                <p class="text-muted mb-0">Administra las solicitudes de devolución de clientes</p>
+            </div>
+            <button class="btn btn-primary" onclick="viewReturnReport()">Ver Reporte de Devoluciones</button>
+        </div>
+
+        <div class="row mb-4">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Pendientes</h6>
+                        <h3 class="mb-0">8</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Aprobadas</h6>
+                        <h3 class="mb-0">24</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Rechazadas</h6>
+                        <h3 class="mb-0">3</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h6 class="text-muted mb-2">Este Mes</h6>
+                        <h3 class="mb-0">35</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0">
+                        <thead>
+                            <tr>
+                                <th>Solicitud</th>
+                                <th>Cliente</th>
+                                <th>Pedido</th>
+                                <th>Producto</th>
+                                <th>Motivo</th>
+                                <th>Fecha</th>
+                                <th>Estado</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>#DEV-001</strong></td>
+                                <td>Juan Pérez</td>
+                                <td>#ORD-1234</td>
+                                <td>Mouse Inalámbrico</td>
+                                <td><span class="badge badge-danger">Producto defectuoso</span></td>
+                                <td>22/03/2024</td>
+                                <td><span class="badge badge-warning">Pendiente</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" onclick="processReturn('DEV-001', 'Producto defectuoso')">Procesar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#DEV-002</strong></td>
+                                <td>María González</td>
+                                <td>#ORD-1235</td>
+                                <td>Teclado Mecánico</td>
+                                <td><span class="badge badge-info">No cumple expectativas</span></td>
+                                <td>21/03/2024</td>
+                                <td><span class="badge badge-warning">Pendiente</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" onclick="processReturn('DEV-002', 'No cumple expectativas')">Procesar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#DEV-003</strong></td>
+                                <td>Carlos Ramírez</td>
+                                <td>#ORD-1236</td>
+                                <td>Calculadora Científica</td>
+                                <td><span class="badge badge-danger">Producto defectuoso</span></td>
+                                <td>20/03/2024</td>
+                                <td><span class="badge badge-success">Aprobada</span></td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm" disabled>Procesada</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#DEV-004</strong></td>
+                                <td>Ana Martínez</td>
+                                <td>#ORD-1237</td>
+                                <td>Mochila Escolar</td>
+                                <td><span class="badge badge-info">Producto equivocado</span></td>
+                                <td>19/03/2024</td>
+                                <td><span class="badge badge-warning">Pendiente</span></td>
+                                <td>
+                                    <button class="btn btn-primary btn-sm" onclick="processReturn('DEV-004', 'Producto equivocado')">Procesar</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><strong>#DEV-005</strong></td>
+                                <td>Pedro Silva</td>
+                                <td>#ORD-1238</td>
+                                <td>Webcam HD</td>
+                                <td><span class="badge badge-danger">Producto defectuoso</span></td>
+                                <td>18/03/2024</td>
+                                <td><span class="badge badge-success">Aprobada</span></td>
+                                <td>
+                                    <button class="btn btn-secondary btn-sm" disabled>Procesada</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     Modal para procesar devolución 
+    <div class="modal fade" id="returnModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Procesar Devolución <span id="modalReturnId"></span></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-muted">Motivo: <strong id="modalReturnReason"></strong></p>
+                    
+                    <div class="mb-3">
+                        <label for="returnDecision" class="form-label">Decisión</label>
+                        <select class="form-select" id="returnDecision">
+                            <option value="approve">Aprobar Devolución</option>
+                            <option value="reject">Rechazar Devolución</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="returnNotes" class="form-label">Notas Internas</label>
+                        <textarea class="form-control" id="returnNotes" rows="3" placeholder="Agrega notas sobre esta devolución"></textarea>
+                    </div>
+
+                    <div class="alert alert-info">
+                        <strong>Nota:</strong> El cliente será notificado automáticamente por email sobre la decisión.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" onclick="confirmReturn()">Confirmar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     Modal de reporte 
+    <div class="modal fade" id="reportModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Reporte de Devoluciones</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <h6 class="mb-3">Devoluciones por Motivo</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Motivo</th>
+                                    <th>Cantidad</th>
+                                    <th>Porcentaje</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Producto defectuoso</td>
+                                    <td>15</td>
+                                    <td>43%</td>
+                                </tr>
+                                <tr>
+                                    <td>No cumple expectativas</td>
+                                    <td>10</td>
+                                    <td>29%</td>
+                                </tr>
+                                <tr>
+                                    <td>Producto equivocado</td>
+                                    <td>7</td>
+                                    <td>20%</td>
+                                </tr>
+                                <tr>
+                                    <td>Otros</td>
+                                    <td>3</td>
+                                    <td>8%</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <h6 class="mb-3 mt-4">Historial Reciente</h6>
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Solicitud</th>
+                                    <th>Motivo</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>22/03/2024</td>
+                                    <td>#DEV-001</td>
+                                    <td>Producto defectuoso</td>
+                                    <td><span class="badge badge-warning">Pendiente</span></td>
+                                </tr>
+                                <tr>
+                                    <td>21/03/2024</td>
+                                    <td>#DEV-002</td>
+                                    <td>No cumple expectativas</td>
+                                    <td><span class="badge badge-warning">Pendiente</span></td>
+                                </tr>
+                                <tr>
+                                    <td>20/03/2024</td>
+                                    <td>#DEV-003</td>
+                                    <td>Producto defectuoso</td>
+                                    <td><span class="badge badge-success">Aprobada</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Exportar Reporte</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function processReturn(returnId, reason) {
+            document.getElementById('modalReturnId').textContent = `#${returnId}`;
+            document.getElementById('modalReturnReason').textContent = reason;
+            const modal = new bootstrap.Modal(document.getElementById('returnModal'));
+            modal.show();
+        }
+
+        function confirmReturn() {
+            const decision = document.getElementById('returnDecision').value;
+            const message = decision === 'approve' 
+                ? 'Devolución aprobada. El cliente ha sido notificado por email.'
+                : 'Devolución rechazada. El cliente ha sido notificado por email.';
+            
+            alert(message);
+            const modal = bootstrap.Modal.getInstance(document.getElementById('returnModal'));
+            modal.hide();
+        }
+
+        function viewReturnReport() {
+            const modal = new bootstrap.Modal(document.getElementById('reportModal'));
+            modal.show();
+        }
+    </script>
+</body>
+</html>

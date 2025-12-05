@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exportación de Reportes - OfiExpress</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid px-4">
+            <a class="navbar-brand" href="index.html">OfiExpress</a>
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="reportes.html" class="btn btn-secondary btn-sm me-2">Ver Reportes</a>
+                </li>
+                <li class="nav-item">
+                    <a href="index.html" class="btn btn-secondary btn-sm">Volver</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <h2 class="mb-4">Exportar Reportes a Excel</h2>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="mb-4">Selecciona el Tipo de Reporte</h5>
+
+                        <div class="d-flex flex-column gap-3">
+                            <div class="form-check p-0">
+                                <input class="form-check-input d-none" type="radio" name="reportType" id="salesReport" checked>
+                                <label class="w-100" for="salesReport">
+                                    <div class="card" style="cursor: pointer; border: 2px solid var(--accent-blue);" onclick="selectReport('sales')">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-3">
+                                                    <div style="width: 40px; height: 40px; background: var(--accent-blue); border-radius: 8px;"></div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-0">Reporte de Ventas</h6>
+                                                    <small class="text-muted">Ventas totales, pedidos y ticket promedio</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form-check p-0">
+                                <input class="form-check-input d-none" type="radio" name="reportType" id="productsReport">
+                                <label class="w-100" for="productsReport">
+                                    <div class="card" style="cursor: pointer; border: 2px solid var(--border-color);" onclick="selectReport('products')">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-3">
+                                                    <div style="width: 40px; height: 40px; background: var(--accent-purple); border-radius: 8px;"></div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-0">Productos Más Vendidos</h6>
+                                                    <small class="text-muted">Ranking de productos por cantidad vendida</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form-check p-0">
+                                <input class="form-check-input d-none" type="radio" name="reportType" id="customersReport">
+                                <label class="w-100" for="customersReport">
+                                    <div class="card" style="cursor: pointer; border: 2px solid var(--border-color);" onclick="selectReport('customers')">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-3">
+                                                    <div style="width: 40px; height: 40px; background: var(--accent-green); border-radius: 8px;"></div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-0">Clientes Frecuentes</h6>
+                                                    <small class="text-muted">Listado de clientes y sus compras</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+
+                            <div class="form-check p-0">
+                                <input class="form-check-input d-none" type="radio" name="reportType" id="inventoryReport">
+                                <label class="w-100" for="inventoryReport">
+                                    <div class="card" style="cursor: pointer; border: 2px solid var(--border-color);" onclick="selectReport('inventory')">
+                                        <div class="card-body">
+                                            <div class="d-flex align-items-center">
+                                                <div class="me-3">
+                                                    <div style="width: 40px; height: 40px; background: var(--accent-yellow); border-radius: 8px;"></div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <h6 class="mb-0">Inventario de Productos</h6>
+                                                    <small class="text-muted">Stock actual de todos los productos</small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h5 class="mb-4">Configuración de Exportación</h5>
+
+                        <div class="mb-3">
+                            <label for="dateRange" class="form-label">Período</label>
+                            <select class="form-select" id="dateRange">
+                                <option>Mes Actual</option>
+                                <option>Mes Anterior</option>
+                                <option>Últimos 3 Meses</option>
+                                <option>Últimos 6 Meses</option>
+                                <option>Año Actual</option>
+                                <option>Personalizado</option>
+                            </select>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Formato de Archivo</label>
+                            <div class="d-flex gap-3">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fileFormat" id="xlsx" checked>
+                                    <label class="form-check-label" for="xlsx">
+                                        Excel (.xlsx)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="fileFormat" id="csv">
+                                    <label class="form-check-label" for="csv">
+                                        CSV (.csv)
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="includeCharts" checked>
+                            <label class="form-check-label" for="includeCharts">
+                                Incluir gráficos en el reporte
+                            </label>
+                        </div>
+
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="checkbox" id="includeSummary" checked>
+                            <label class="form-check-label" for="includeSummary">
+                                Incluir resumen ejecutivo
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="mb-3">Vista Previa</h5>
+                        <p class="text-muted mb-4">El archivo contendrá los siguientes datos:</p>
+                        
+                        <ul class="text-muted">
+                            <li>Ventas totales del período seleccionado</li>
+                            <li>Número de pedidos realizados</li>
+                            <li>Ticket promedio de compra</li>
+                            <li>Comparación con período anterior</li>
+                            <li>Desglose por categorías</li>
+                        </ul>
+
+                        <div class="alert alert-info mt-4">
+                            <strong>Nota:</strong> El archivo se descargará automáticamente al hacer clic en "Exportar".
+                        </div>
+
+                        <button class="btn btn-primary w-100" onclick="exportReport()">
+                            Exportar a Excel
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        function selectReport(type) {
+            document.querySelectorAll('.form-check label .card').forEach(card => {
+                card.style.borderColor = 'var(--border-color)';
+            });
+            event.target.closest('.card').style.borderColor = 'var(--accent-blue)';
+        }
+
+        function exportReport() {
+            const reportType = document.querySelector('input[name="reportType"]:checked').id;
+            const dateRange = document.getElementById('dateRange').value;
+            const fileFormat = document.querySelector('input[name="fileFormat"]:checked').id;
+            
+            alert(`Exportando reporte...\nTipo: ${reportType}\nPeríodo: ${dateRange}\nFormato: ${fileFormat}\n\nEl archivo se descargará en breve.`);
+        }
+    </script>
+</body>
+</html>

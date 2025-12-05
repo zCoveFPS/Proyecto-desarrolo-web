@@ -173,6 +173,37 @@ Contiene:
 - Manejo de errores consistente
 - Relación con historias de usuario y mockups
 
+### 7. Diagrama de Clases Backend — 6 pts
+📄 **Archivo**: `DIAGRAMA_CLASES_BACKEND.md`
+
+Contiene:
+- Diagrama ASCII de clases del dominio (USER, PRODUCT, CART, ORDER)
+- Atributos tipados de cada clase
+- Relaciones 1:N y N:M con cardinalidades visibles
+- Constraints y validaciones de BD
+- Coherencia con implementación Mongoose
+
+### 8. Arquitectura Backend (Componentes y Flujo) — 12 pts
+📄 **Archivo**: `ARQUITECTURA_BACKEND.md`
+
+Contiene:
+- Diagrama de 5 capas: Presentación, Controladores, Servicios, Modelos, BD
+- Explicación de cada capa con componentes reales
+- 3 flujos de comunicación detallados: Login, Agregar Carrito, Crear Pedido
+- Middleware, validaciones, manejo de errores
+- Ciclo completo Cliente → API → DB → Respuesta
+
+### 9. Stack Tecnológico Justificado — 8 pts
+📄 **Archivo**: `STACK_TECNOLOGICO.md`
+
+Contiene:
+- Justificación de Node.js, Express, MongoDB, Mongoose, REST, JWT, bcrypt
+- Tabla comparativa con alternativas (MEAN, LAMP, Serverless)
+- Contexto móvil y escalabilidad
+- Análisis de costo, performance, mantenibilidad
+- Proyección futura del stack
+
+---
 ---
 
 ## Estructura del Proyecto
